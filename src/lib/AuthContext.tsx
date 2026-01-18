@@ -2,12 +2,7 @@
 
 import { createContext, useContext, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-
-interface User {
-    name: string;
-    email: string;
-    avatar?: string;
-}
+import { User } from "./types";
 
 interface AuthContextType {
     user: User | null;
@@ -88,7 +83,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             name,
             email,
             password,
-            avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=${email}`
+            avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=${email}`,
+            subscriptionStatus: "free",
+            lastSyncedAt: Date.now()
         };
 
         users[email] = newUser;
